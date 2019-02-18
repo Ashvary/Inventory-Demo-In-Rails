@@ -17,11 +17,14 @@
  @import 'bootstrap-custom'*/
 
 input {
-	width: 200px;
+	width: 150px;
 }
 select {
 	width: 200px;
 }
 .form-group {
 	padding-left: 25px;
+}
+#book_user_id {
+	width: 200px;
 }

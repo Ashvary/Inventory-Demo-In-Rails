@@ -1,50 +1,51 @@
-<div class="container">
-<h1 class="text-primary">Add Book</h1>
-	<%# form_for @user , :html => { :multipart => true , :id => "form-valid" , :class => "form-horizontal"} do |u| %>
-<%= form_for @book , :url => books_new_path , :html => {:id => 'book-form'} do |u| %>
-  <div class="form-group row " >
-      <div class="col-sm-1 ">
-        <%= u.label :name %>
-      </div>
-      <div class="col-sm-11">
-        <%= u.text_field :name %>
-      </div>
-  </div>
-  <div class="form-group row" >
-      <div class="col-sm-1">
-      <%= u.label :isbncode %>
-      </div>
-      <div class="col-sm-11" >
-      <%= u.text_field :isbncode %>
-      <% if @book.errors.messages[:isbncode].any? %>
-      <%= @book.errors.messages[:isbncode] %>
-      <% end %>
-      </div>
-  </div>
-  <div class="form-group row" >
-      <div class="col-sm-1">
-      <%= u.label :quantity %>
-      </div>
-      <div class="col-sm-11">
-      <%= u.text_field :quantity %>
-      </div>
-  </div>
-  <div class="form-group" >
-      <div id="dropdown_country" , class="row" ,style="width: auto;">
-        <div class="col-sm-1">
-      		<%= u.label :user , "Author" %>
-    	</div>
-		<div class="col-sm-11">
-		<%= u.collection_select :user_id, User.all, :id, :name, :include_blank => 'please select' %>
-		</div>
-      </div>
-  </div>
-
-  <div class="form-group">
-    <%= u.submit "Add Book"  %>
-  </div>
-  <% end %>
-  </div>
+<div class="container" style = "background-color: lightgrey; padding: 10px; width: 400px; margin: 10px auto;">
+	<h1 class="text-primary">Add Book</h1>
+		<%# form_for @user , :html => { :multipart => true , :id => "form-valid" , :class => "form-horizontal"} do |u| %>
+		<div class="container">
+	<%= form_for @book , :url => books_new_path , :html => {:id => 'book-form'} do |u| %>
+	  <div class="form-group row " >
+	      <div class="col-sm-4 ">
+	        <%= u.label :name %>
+	      </div>
+	      <div class="col-sm-8">
+	        <%= u.text_field :name %>
+	      </div>
+	  </div>
+	  <div class="form-group row" >
+	      <div class="col-sm-4">
+	      <%= u.label :isbncode %>
+	      </div>
+	      <div class="col-sm-8" >
+	      <%= u.text_field :isbncode %>
+	      <% if @book.errors.messages[:isbncode].any? %>
+	      <%= @book.errors.messages[:isbncode] %>
+	      <% end %>
+	      </div>
+	  </div>
+	  <div class="form-group row" >
+	      <div class="col-sm-4">
+	      <%= u.label :quantity %>
+	      </div>
+	      <div class="col-sm-8">
+	      <%= u.text_field :quantity %>
+	      </div>
+	  </div>
+	  <div class="form-group" >
+	      <div id="dropdown_country" , class="row" >
+	        <div class="col-sm-4">
+	      		<%= u.label :user , "Author" %>
+	    	</div>
+			<div class="col-sm-8">
+			<%= u.collection_select :user_id, User.all, :id, :name, :include_blank => 'please select' %>
+			</div>
+	      </div>
+	  </div>
+	  <div class="form-group">
+	    <%= u.submit "Add Book"  %>
+	  </div>
+	<% end %>
+</div>
+</div>
 <script type="text/javascript">
 	$('#book-form').validate({
       rules: {
