@@ -1,0 +1,138 @@
+<h1 class="text-primary">Registration Form</h1>
+
+	<%= form_for @user , :html => { :multipart => true , :id => "form-valid" , :class => "form-horizontal"} do |u| %>
+  <div class="form-group row " >
+      <div class="col-sm-1 ">
+        <%= u.label :name %>
+      </div>
+      <div class="col-sm-11">
+        <%= u.text_field :name %>
+      <div class="text-danger error-name" >
+        <% if @user.errors.messages[:name].any? %>
+        <%= @user.errors.messages[:name] %>
+       <% end %>
+      </div>
+      </div>
+  </div>
+  <div class="form-group row" >
+      <div class="col-sm-1">
+      <%= u.label :phone %>
+      </div>
+      <div class="col-sm-11" >
+      <%= u.text_field :phone, :maxlength => 10 %>
+      <div class="text-danger error-phone" >
+        <% if @user.errors.messages[:phone].any? %>
+      <%= @user.errors.messages[:phone] %>
+      <% end %>
+      </div>
+      </div>
+  </div>
+  <div class="form-group row" >
+      <div class="col-sm-1">
+      <%= u.label :email %>
+      </div>
+      <div class="col-sm-11">
+      <%= u.email_field :email %>
+      <div class="text-danger error-email" >
+        <% if @user.errors.messages[:email].any? %>
+      <%= @user.errors.messages[:email] %>
+      <% end %>
+      </div>
+      </div>
+  </div>
+  <div class="form-group row" >
+        <div class="col-sm-1">
+      <%= u.label :address %>
+      </div>
+       <div class="col-sm-11">
+      <%= u.text_field :address %>
+      <div class="text-danger error-address" >
+        <% if @user.errors.messages[:address].any? %>
+      <%= @user.errors.messages[:address] %>
+      <% end %>
+      </div>
+      </div>
+  </div>
+    <div class="form-group row " >
+      <div class="col-sm-1 ">
+        <%= u.label :avatar %>
+      </div>
+      <div class="col-sm-11">
+        <%= u.file_field :avatar %>
+      </div>
+  </div>
+  <div class="form-group" >
+      <% if @user.errors.any? %>
+      <div id="dropdown_country" , class="row" ,style="width: auto;">
+        <div class="col-sm-1">
+      <%= u.label :country , "Country*" %>
+    </div>
+    <div class="col-sm-11">
+    <%= u.collection_select :country_id, Country.all, :id, :name, :include_blank => 'please select' %>
+    </div>
+      </div>
+      <% else %>
+      <div id="dropdown_country" , class="row" , style="width: auto;">
+        <div class="col-sm-1">
+      <%= u.label :country %>
+      </div>
+      <div class="col-sm-11">
+    <%= u.collection_select :country_id, Country.all, :id, :name, :prompt => "--select country--" %>
+    </div>
+      </div>
+      <% end %>  
+  </div>
+  <div class="form-group" >
+      <% if @user.errors.any? %>
+      <div id="dropdown_state " , class="row" , style="width: auto;">
+        <div class="col-sm-1">
+      <%= u.label :state_id , "State*"%>
+      </div>
+      <div class="col-sm-11">
+      <%= u.select :state_id , {:select_state => "" } %>
+      </div>
+      </div>
+      <% else %>
+      <div id="dropdown_state" , class="row" , style="display: none; width: auto;">
+        <div class="col-sm-1">
+      <%= u.label :state_id , "State" %>
+    </div>
+    <div class="col-sm-11">
+      <%= u.select :state_id , {:select_state => "" } %>
+      </div>
+      </div>
+      <% end %>
+  </div>
+  <div class="form-group" >
+      <% if @user.errors.any? %>
+      <div id="dropdown_city" , class="row" ,style="width: auto;">
+        <div class="col-sm-1">
+      <%= u.label :city_id , "City*" %>
+      </div>
+      <div class="col-sm-11">
+      <%= u.select :city_id , {:select_city => "" } %>
+    </div>
+      </div>
+      <% else %>
+      <div id="dropdown_city" , class="row" , style="display: none; width: auto;">
+        <div class="col-sm-1">
+      <%= u.label :city_id , "City" %>
+      </div>
+      <div class="col-sm-11">
+      <%= u.select :city_id , {:select_city => "" } %>
+      </div>
+      </div>
+        <% end %>
+  </div>
+
+
+  <div class="form-group">
+    <%= u.submit "Register" , class: 'reg-button' %>
+  </div>
+  <% end %>
+
+<h3><%= link_to 'Back to users' , root_path  %></h3>
+
+  
+  <script type="text/javascript" src="/assets/user.js">
+  </script> 

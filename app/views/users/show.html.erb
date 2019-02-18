@@ -1,0 +1,36 @@
+<h1>Details</h1>
+<table class="table">
+	<th>
+		<% if @user.avatar.exists? %>
+		<td>Pic</td>
+		<td>url</td>
+		<% end %>
+		<td>Name</td>
+		<td>phone</td>
+		<td>email</td>
+		<td>Address</td>
+		<td>City</td>
+		<td>State</td>
+		<td>Country</td>
+	</th>
+	<tbody>
+	<tr>
+		<td></td>
+		<% if @user.avatar.exists? %>
+		<td><%= image_tag(@user.avatar.url(:medium)) %></td> 
+		<td><%= @user.avatar.url(:medium) %></td>
+		<% end %>
+		<td><%= @user.name    %>  </td>
+		<td><%= @user.phone   %>  </td>
+		<td><%= @user.email   %>  </td>
+		<td><%= @user.address %>  </td>
+		<td><%= @user.city.name    %>  </td>
+		<td><%= @user.state.name   %>  </td>
+		<td><%= @user.country.name %>  </td>
+	</tr>
+	</tbody>
+</table>
+<div class="custom-control">
+<h3>
+	<%= link_to 'see all users' , root_path  %>  </h3>
+	</div>

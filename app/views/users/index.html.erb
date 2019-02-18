@@ -1,0 +1,30 @@
+ <h1 class="text-danger" >List of All Registered User</h1>
+<table class="table">
+	<thead>
+		<th>S.No.</th>
+		<th>Name</th>
+		<th>phone</th>
+		<th>email</th>
+		<th>country</th>
+		<th>State</th>
+		<th>City</th>
+		<th>Edit</th>
+		<th>Show</th>
+		<th>destroy</th>
+	</thead>
+	<tbody>
+	<% @users.each_with_index do |u , index| %>
+	<tr><td><%= index+1 %></td>
+		<td><%= u.name  %></td>
+		<td><%= u.phone %></td>
+		<td><%= u.email %></td>
+		<td><%= u.country.name if u.country_id %></td>
+		<td><%= u.state.name if u.state_id %></td>
+		<td><%= u.city.name if u.city_id %></td>
+		<td><%= link_to 'edit' , edit_user_path(u.id) %> </td>
+		<td><%= link_to 'show' ,  user_path(u) %>  </td>
+		<td><%= link_to 'destroy' ,  user_path(u) , method: :delete , data: ("are you sure?") %> </td>
+	</tr>
+	<% end %>
+	</tbody>
+</table>

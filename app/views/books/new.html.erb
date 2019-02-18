@@ -1,0 +1,83 @@
+<div class="container">
+<h1 class="text-primary">Add Book</h1>
+	<%# form_for @user , :html => { :multipart => true , :id => "form-valid" , :class => "form-horizontal"} do |u| %>
+<%= form_for @book , :url => books_new_path , :html => {:id => 'book-form'} do |u| %>
+  <div class="form-group row " >
+      <div class="col-sm-1 ">
+        <%= u.label :name %>
+      </div>
+      <div class="col-sm-11">
+        <%= u.text_field :name %>
+      </div>
+  </div>
+  <div class="form-group row" >
+      <div class="col-sm-1">
+      <%= u.label :isbncode %>
+      </div>
+      <div class="col-sm-11" >
+      <%= u.text_field :isbncode %>
+      <% if @book.errors.messages[:isbncode].any? %>
+      <%= @book.errors.messages[:isbncode] %>
+      <% end %>
+      </div>
+  </div>
+  <div class="form-group row" >
+      <div class="col-sm-1">
+      <%= u.label :quantity %>
+      </div>
+      <div class="col-sm-11">
+      <%= u.text_field :quantity %>
+      </div>
+  </div>
+  <div class="form-group" >
+      <div id="dropdown_country" , class="row" ,style="width: auto;">
+        <div class="col-sm-1">
+      		<%= u.label :user , "Author" %>
+    	</div>
+		<div class="col-sm-11">
+		<%= u.collection_select :user_id, User.all, :id, :name, :include_blank => 'please select' %>
+		</div>
+      </div>
+  </div>
+
+  <div class="form-group">
+    <%= u.submit "Add Book"  %>
+  </div>
+  <% end %>
+  </div>
+<script type="text/javascript">
+	$('#book-form').validate({
+      rules: {
+        "book[name]": {
+          required: true
+         },
+         "book[isbncode]": {
+         	required: true ,
+         	maxlength: 10,
+         },
+         "book[quantity]": {
+         	required: true ,
+         	digits: true 
+         },
+          "book[user_id]": {
+         	required: true
+         }
+      },
+      	messages: {
+        "book[name]": {
+          required: "name can't be blank"
+         	},
+        "book[isbncode]": {
+          required: "please enter isbncode",
+          maxlength: "isbncode is too long"
+	        },
+        "book[quantity]": {
+          required: "Quantity is required",
+          digits: "Enter Number"
+        },
+        "book[user_id]": { 
+        	required: "field is mandatory" 
+       	}
+      }
+    });
+</script>
